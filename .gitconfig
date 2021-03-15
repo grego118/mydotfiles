@@ -1,0 +1,23 @@
+[user]
+    name = Austin Gregory
+    email = austinggregory@gmail.com
+[core]
+    autocrlf = input
+    editor = /usr/local/bin/nvim
+[merge]
+    tool = kdiff3
+[diff]
+    guitool = kdiff3
+[alias]
+    aa = add --all
+    amend = commit --amend --no-edit
+    ci = commit
+    ll = log --graph --oneline --decorate --all
+    st = status
+    co = checkout
+[push]
+    default = simple
+[pull]
+    rebase = true
+[url "git@github.com:"]
+    insteadOf = https://github.com/
