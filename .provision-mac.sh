@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+# Make sure Xcode command line tools are installed
+if (( ! $+commands[gcc] )); then
+    echo "Xcode command line tools not installed... Run 'xcode-select --install' first."
+    exit 1
+fi
+
 # Make sure Homebrew is installed
 (( ! $+commands[brew] )) && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
