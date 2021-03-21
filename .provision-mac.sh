@@ -9,16 +9,19 @@ fi
 # Make sure Homebrew is installed
 (( ! $+commands[brew] )) && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Keep things up to date
+# Keep packages up to date
 brew update
 brew upgrade
 
-# Install and upgrade useful general utilities
+# Install and upgrade generally useful utilities
 brew install findutils
 brew install ripgrep
 brew install p7zip
 
-# Get the latest Python versions
+# Let Homebrew manage Git
+brew install git
+
+# Install Python build tools
 brew install openssl
 brew install readline
 brew install sqlite3
@@ -26,8 +29,15 @@ brew install xz
 brew install zlib
 brew install pyenv
 
+# Install latest Python versions
+LATEST_PYTHON_2_VERSION=$(pyenv install --list | tr -d ' ' | grep '^2' | grep -v '[A-Za-z]\|-' | tail -1)
+LATEST_PYTHON_3_VERSION=$(pyenv install --list | tr -d ' ' | grep '^3' | grep -v '[A-Za-z]\|-' | tail -1)
+eval "$(pyenv init -)"
+pyenv install $LATEST_PYTHON_2_VERSION
+pyenv install $LATEST_PYTHON_3_VERSION
+
 # Install development tools
-brew install git
+brew install pipenv
 brew install go
 brew install npm
 brew install cmake
@@ -39,14 +49,14 @@ brew install neovim
 if [[ ! -d ~/.nvim-py2env ]]; then
     mkdir ~/.nvim-py2env
     cd ~/.nvim-py2env
-    pipenv --two
+    pyenv local $LATEST_PYTHON_2_VERSION
     pipenv install neovim
     cd ~
 fi
 if [[ ! -d ~/.nvim-py3env ]]; then
     mkdir ~/.nvim-py3env
     cd ~/.nvim-py3env
-    pipenv --three
+    pyenv local $LATEST_PYTHON_3_VERSION
     pipenv install neovim
     cd ~
 fi
