@@ -30,9 +30,9 @@ brew install zlib
 brew install pyenv
 
 # Install latest Python versions
+eval "$(pyenv init -)"
 LATEST_PYTHON_2_VERSION=$(pyenv install --list | tr -d ' ' | grep '^2' | grep -v '[A-Za-z]\|-' | tail -1)
 LATEST_PYTHON_3_VERSION=$(pyenv install --list | tr -d ' ' | grep '^3' | grep -v '[A-Za-z]\|-' | tail -1)
-eval "$(pyenv init -)"
 pyenv install $LATEST_PYTHON_2_VERSION
 pyenv install $LATEST_PYTHON_3_VERSION
 
