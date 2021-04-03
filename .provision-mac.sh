@@ -24,8 +24,9 @@ brew install findutils
 brew install ripgrep
 brew install p7zip
 
-# Let Homebrew manage Git
+# Setup Git and custom commands
 brew install git
+chmod +x ~/.gitcmds/git-*
 
 # Install Python build tools
 brew install openssl
