@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+if ( ! git diff --cached --quiet --exit-code ) || ( ! git diff --quiet --exit-code ); then
+    echo Cannot sync with uncommitted changes
+    return 1
+fi
+
+remote=origin
+main=main
+develop=develop
+
+currentBranch=$(git branch --show-current)
+parentBranch=$(git show-branch | grep \* | grep -v "\[$currentBranch" | head -n 1 | sed -E 's/^.*\[(.*)\].*$/\1/')
+firstCommit=$(git log --oneline $parentBranch...$currentBranch | tail -n 1 | awk '{print $1}')
+
+git fetch $remote
+
+git checkout -B $main $remote/$main
+if ( git branch -r | grep -q $remote/$develop ); then
+    git checkout -B $develop $remote/$develop
+fi
+
+if [[ $currentBranch == $main || $currentBranch == $develop ]]; then
+    return 0
+fi
+
+if ( git branch -r --merged | grep -q $remote/$currentBranch ); then
+    git push -d $remote $currentBranch
+    git branch -D $currentBranch
+    return 0
+fi
+
+if [[ $parentBranch == $main || $parentBranch == $develop ]]; then
+    git rebase --onto $(git branch --show-current) $firstCommit^ $currentBranch
+else
+    git checkout $currentBranch
+fi
