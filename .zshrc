@@ -11,5 +11,12 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
+
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"

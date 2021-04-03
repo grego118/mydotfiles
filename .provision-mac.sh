@@ -13,6 +13,12 @@ fi
 brew update
 brew upgrade
 
+# Make sure shell completions work
+brew install zsh-completion
+if ( ! compaudit ); then
+    compaudit | xargs chmod g-w
+fi
+
 # Install and upgrade generally useful utilities
 brew install findutils
 brew install ripgrep
