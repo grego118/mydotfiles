@@ -27,6 +27,12 @@
     dotfiles checkout
     ```
 
+5. Run the provision script
+
+    ```shell
+    ./.provision-mac
+    ```
+
 # Credits and thanks
 
 - Atlassian for their [dotfile management tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
