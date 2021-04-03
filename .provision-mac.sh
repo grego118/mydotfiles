@@ -51,19 +51,20 @@ brew install tmux
 brew install neovim
 
 # Setup Neovim for success
+export PIPENV_VENV_IN_PROJECT=true
 [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]] && curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 if [[ ! -d ~/.nvim-py2env ]]; then
     mkdir ~/.nvim-py2env
     cd ~/.nvim-py2env
     pyenv local $LATEST_PYTHON_2_VERSION
-    pipenv install neovim
+    pipenv install --python $(pyenv which python) neovim
     cd ~
 fi
 if [[ ! -d ~/.nvim-py3env ]]; then
     mkdir ~/.nvim-py3env
     cd ~/.nvim-py3env
     pyenv local $LATEST_PYTHON_3_VERSION
-    pipenv install neovim
+    pipenv install --python $(pyenv which python) neovim
     cd ~
 fi
 
