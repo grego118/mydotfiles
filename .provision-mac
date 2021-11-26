@@ -50,6 +50,7 @@ brew install npm
 brew install cmake
 brew install tmux
 brew install neovim
+brew install --cask google-cloud-sdk
 
 # Setup Neovim for success
 export PIPENV_VENV_IN_PROJECT=true
