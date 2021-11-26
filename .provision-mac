@@ -23,6 +23,9 @@ fi
 brew install findutils
 brew install ripgrep
 brew install p7zip
+brew install --cask firefox
+brew install --cask google-drive
+brew install --cask obsidian
 
 # Setup Git and custom commands
 brew install git
