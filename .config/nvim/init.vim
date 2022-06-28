@@ -12,15 +12,9 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'whatyouhide/vim-gotham'
 Plug 'vim-airline/vim-airline'
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'benmills/vimux'
-
 Plug 'junegunn/fzf', {'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 
-Plug 'preservim/nerdtree'
-
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'dart-lang/dart-vim-plugin'
 
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
@@ -28,9 +22,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 call plug#end()
-
-
-let NERDTreeShowHidden=0
 
 
 let g:go_fmt_command='goimports'
@@ -145,16 +136,9 @@ nmap <leader>b :Buffers<cr>
 
 nmap <leader>f :Files<cr>
 
-nmap <leader>t :NERDTreeFind<cr>
-
 nmap <silent> <leader><cr> :noh<cr>  " Clear highlights
 
 
 " GoTo code navigation
 nnoremap <leader>j :YcmCompleter GoTo<cr>
 nnoremap <leader>r :YcmCompleter GoToReferences<cr>
-
-
-" Easy command execution
-nmap <leader>p :VimuxPromptCommand<cr>
-nmap <leader>l :VimuxRunLastCommand<cr>

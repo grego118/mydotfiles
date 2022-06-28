@@ -5,6 +5,7 @@ export PIPENV_VENV_IN_PROJECT=true
 
 
 path+=~/.gitcmds
+path+=~/dev/flutter/bin
 
 
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"

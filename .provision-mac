@@ -23,9 +23,6 @@ fi
 brew install findutils
 brew install ripgrep
 brew install p7zip
-brew install --cask firefox
-brew install --cask google-drive
-brew install --cask obsidian
 
 # Setup Git and custom commands
 brew install git
@@ -54,6 +51,7 @@ brew install cmake
 brew install tmux
 brew install neovim
 brew install --cask google-cloud-sdk
+brew install --cask docker
 
 # Setup Neovim for success
 export PIPENV_VENV_IN_PROJECT=true

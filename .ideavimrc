@@ -1,0 +1,98 @@
+let mapleader=','
+
+
+"========="
+" Options "
+"========="
+set hidden
+
+set number relativenumber  " Hybrid line numbers
+
+set ruler  " Always show current position
+
+set showmatch  " Show matching brackets under cursor
+
+set termguicolors
+
+set wrap  " No horizontal scrolling
+
+
+set cmdheight=1
+
+set colorcolumn=88
+
+set encoding=utf8
+
+set history=500
+
+set list listchars=tab:»\ ,trail:°  " Explicitly mark tabs and trailing whitespace
+
+set shortmess+=c  " Don't pass messages to |ins-completion-menu|
+
+set signcolumn=yes
+
+set so=7  " Keep some lines visible above and below the cursor
+
+set updatetime=300
+
+
+" Be civilized about external changes
+set autoread
+au FocusGained,BufEnter * checktime
+
+
+" Disable backups
+set nobackup
+set noswapfile
+set nowb
+
+
+" Be civilized about tabs and indents
+set ai
+set expandtab
+set si
+set smarttab
+set ts=4
+set sw=4
+
+
+" Be civilized when searching
+set hlsearch
+set ignorecase
+set incsearch
+set magic
+set smartcase
+
+
+" Command line completion
+set wildmenu
+set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+
+
+" Disable sounds
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+
+" Sensible split defaults
+set splitbelow
+set splitright
+
+
+"=========="
+" Commands "
+"=========="
+map <leader>g <Action>(FindInPath)
+
+map <leader>b <Action>(GotoFile)
+
+map <leader>f <Action>(GotoFile)
+
+map <silent> <leader><cr> :noh<cr>  " Clear highlights
+
+
+" GoTo code navigation
+map <leader>j <Action>(GotoDeclaration)
+map <leader>r <Action>(FindUsages)
