@@ -9,25 +9,23 @@ remote=origin
 main=main
 
 currentBranch=$(git branch --show-current)
-parentBranch=$(git show-branch | grep \* | grep -v "\[$currentBranch" | head -n 1 | sed -E 's/^.*\[(.*)\].*$/\1/')
+parentCommit=$(git show-branch --merge-base | head -n 1)
+mainCommit=$(git rev-parse $remote/$main)
 
-git fetch $remote
-git checkout -B $main $remote/$main
+git fetch $remote --prune --prune-tags
 
 if [[ $currentBranch == $main ]]; then
+    echo Rebasing onto $main
+    git rebase $remote/$main
     return 0
 fi
 
-if ( git branch -r --merged | grep -q $remote/$currentBranch ); then
-    echo $currentBranch has been merged; deleting local copy
-    git push -d $remote $currentBranch
-    git branch -D $currentBranch
-    return 0
-fi
+git checkout -B $main $remote/$main
 
-if [[ $parentBranch == $main ]]; then
+if [[ $parentCommit == $mainCommit ]]; then
     echo Rebasing onto $main
     git rebase --onto $main $currentBranch
-else
-    git checkout $currentBranch
+    return 0
 fi
+
+git checkout $currentBranch
