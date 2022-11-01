@@ -1,32 +1,22 @@
 #!/usr/bin/env zsh
 
 
-ORIGINAL_DIR=$(pwd)
-
-
-# Make sure Xcode command line tools are installed
-if (( ! $+commands[gcc] )); then
-    echo "Xcode command line tools not installed... Run 'xcode-select --install' first."
-    exit 1
-fi
-
-
-# Make sure the system is up to date
+# System updates
 sudo softwareupdate --install --all --agree-to-license
 sudo xcodebuild -license accept
 xcodebuild -runFirstLaunch
 
 
-# Make sure Homebrew is installed and up to date
+# Homebrew
 (( ! $+commands[brew] )) && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 brew update
-
-
-# Keep packages up to date
 brew upgrade
 
 
-# Enhance Zsh
+# Shell improvements
+brew install --cask iterm2
+
 brew install zsh-completion
 if ( ! compaudit ); then
     compaudit | xargs chmod g-w
@@ -35,47 +25,36 @@ fi
 brew install romkatv/powerlevel10k/powerlevel10k
 
 
-# Install generally useful packages
-brew install findutils p7zip
+# Dev tools
+brew install git go npm ripgrep k9s
+brew install --cask google-cloud-sdk docker
 
-
-# Install Git
-brew install git
 chmod +x ~/.gitcmds/git-*
 
 
-# Install the latest Python versions
-brew install openssl readline sqlite3 xz zlib pyenv
+# Python
+brew install openssl readline sqlite3 xz zlib tcl-tk
+brew install pyenv pyenv-virtualenv
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-LATEST_PYTHON_2_VERSION=$(pyenv install --list | tr -d ' ' | grep '^2' | grep -v '[A-Za-z]\|-' | tail -1)
+pyenv install 2.7.18
+
 LATEST_PYTHON_3_VERSION=$(pyenv install --list | tr -d ' ' | grep '^3' | grep -v '[A-Za-z]\|-' | tail -1)
-pyenv install $LATEST_PYTHON_2_VERSION
-pyenv install $LATEST_PYTHON_3_VERSION
+pyenv install $LATEST_PYTHON_3_VERSION --skip-existing
 
 
-# Install development tools
-brew install pipenv go npm cmake ripgrep
-brew install --cask google-cloud-sdk
-brew install --cask docker
-
-
-# Setup Neovim
+# Neovim
 brew install neovim
 
-[[ -d ~/.nvim-py2env ]] && rm -rf ~/.nvim-py2env
-[[ -d ~/.nvim-py3env ]] && rm -rf ~/.nvim-py3env
-
-export PIPENV_VENV_IN_PROJECT=true
-
-mkdir ~/.nvim-py2env && cd $_ && pyenv local $LATEST_PYTHON_2_VERSION
-pipenv install --python $(pyenv which python) neovim
-
-mkdir ~/.nvim-py3env && cd $_ && pyenv local $LATEST_PYTHON_3_VERSION
-pipenv install --python $(pyenv which python) neovim
-
-cd $ORIGINAL_DIR
+pyenv virtualenv $LATEST_PYTHON_3_VERSION nvim-py3
+pyenv activate nvim-py3
+pip install pynvim
+source deactivate
 
 if [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]]; then
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

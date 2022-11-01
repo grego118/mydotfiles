@@ -5,27 +5,28 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export VISUAL=/usr/local/bin/nvim
-export EDITOR=/usr/local/bin/nvim
-
-export PIPENV_VENV_IN_PROJECT=true
-
-
-path+=~/.gitcmds
-path+=~/dev/flutter/bin
+export VISUAL="/usr/local/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
+export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
-source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+path+="$HOME/.gitcmds"
+path+="$HOME/dev/flutter/bin"
+
+
+source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
 
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
 
     autoload -Uz compinit
     compinit
@@ -33,7 +34,7 @@ fi
 
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias updatedb='sudo /usr/libexec/locate.updatedb'
+alias updatedb="sudo /usr/libexec/locate.updatedb"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
