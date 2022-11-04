@@ -1,8 +1,0 @@
-#!/usr/bin/env zsh
-
-if ( git diff --cached --quiet --exit-code ) && ( git diff --quiet --exit-code ); then
-    echo No changes to commit
-    return 1
-fi
-
-git commit --amend --no-edit

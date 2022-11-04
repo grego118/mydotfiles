@@ -26,10 +26,8 @@ brew install romkatv/powerlevel10k/powerlevel10k
 
 
 # Dev tools
-brew install git go npm ripgrep k9s
+brew install git go npm ripgrep k9s gnupg
 brew install --cask google-cloud-sdk docker
-
-chmod +x ~/.gitcmds/git-*
 
 
 # Python
