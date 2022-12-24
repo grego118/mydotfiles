@@ -1,7 +1,7 @@
 [user]
     name = Austin Gregory
     email = austinggregory@gmail.com
-    signingkey = A815A67F03346ED463BAC7A3B8685A6BD4A2D690
+    signingkey = D6B2EA49930EC8E5
 [core]
     autocrlf = input
     editor = /usr/local/bin/nvim

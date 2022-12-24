@@ -33,6 +33,11 @@ if type brew &>/dev/null; then
 fi
 
 
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
+
+
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 
