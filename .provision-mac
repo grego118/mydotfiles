@@ -26,7 +26,7 @@ brew install romkatv/powerlevel10k/powerlevel10k
 
 
 # Dev tools
-brew install git go npm ripgrep k9s gnupg
+brew install git go npm ripgrep k9s gnupg pinentry-mac
 brew install --cask google-cloud-sdk docker
 
 
@@ -40,7 +40,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-pyenv install 2.7.18
+pyenv install 2.7.18 --skip-existing
 
 LATEST_PYTHON_3_VERSION=$(pyenv install --list | tr -d ' ' | grep '^3' | grep -v '[A-Za-z]\|-' | tail -1)
 pyenv install $LATEST_PYTHON_3_VERSION --skip-existing

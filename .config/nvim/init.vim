@@ -8,8 +8,8 @@ let g:python3_host_prog='$HOME/.pyenv/versions/nvim-py3/bin/python'
 "==============="
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'whatyouhide/vim-gotham'
-Plug 'vim-airline/vim-airline'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'junegunn/fzf', {'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
@@ -42,7 +42,11 @@ let g:UltiSnipsExpandTrigger='<C-l>'
 "========="
 " Options "
 "========="
-colorscheme gotham256
+colorscheme kanagawa
+
+lua << END
+require('lualine').setup()
+END
 
 
 set hidden

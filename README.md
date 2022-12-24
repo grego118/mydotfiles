@@ -37,3 +37,4 @@
 
 - Atlassian for their [dotfile management tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 - The authors of the countless .vimrc files I've cherry-picked
+- This fantastic [YubiKey guide](https://github.com/drduh/YubiKey-Guide)
