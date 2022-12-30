@@ -20,6 +20,8 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'APZelos/blamer.nvim'
+
 call plug#end()
 
 
@@ -37,6 +39,12 @@ let g:dart_format_on_save=1
 
 
 let g:UltiSnipsExpandTrigger='<C-l>'
+
+
+let g:blamer_enabled=1
+let g:blamer_delay=1000
+let g:blamer_show_in_insert_modes=0
+let g:blamer_date_format='%Y-%m-%d %H:%M'
 
 
 "========="
