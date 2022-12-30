@@ -5,10 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 export VISUAL="/usr/local/bin/nvim"
 export EDITOR="/usr/local/bin/nvim"
 export PYENV_ROOT="$HOME/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export GPG_TTY="$(tty)"
 
 
 path+="$HOME/.gitcmds"
@@ -31,11 +33,6 @@ if type brew &>/dev/null; then
     autoload -Uz compinit
     compinit
 fi
-
-
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-gpgconf --launch gpg-agent
 
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
