@@ -1,5 +1,12 @@
 #!/usr/bin/env zsh
 
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
 
 # System updates
 sudo softwareupdate --install --all --agree-to-license
