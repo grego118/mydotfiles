@@ -13,13 +13,14 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export GPG_TTY="$(tty)"
 
 
-path+="$HOME/.gitcmds"
 path+="$HOME/dev/flutter/bin"
 
 
 source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source <(kubectl completion zsh)
+source <(colima completion zsh)
 
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -37,6 +38,11 @@ fi
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
+
+alias g="git"
+alias k="kubectl"
+alias n="nerdctl --namespace k8s.io"
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
