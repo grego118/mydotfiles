@@ -13,7 +13,8 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export GPG_TTY="$(tty)"
 
 
-path+="$HOME/dev/flutter/bin"
+path+=("$HOME/dev/flutter/bin")
+path+=("$(go env GOPATH)/bin")
 
 
 source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
