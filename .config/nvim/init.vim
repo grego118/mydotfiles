@@ -1,6 +1,6 @@
 let mapleader=','
 
-let g:python3_host_prog='$HOME/.pyenv/versions/nvim-py3/bin/python'
+let g:python3_host_prog='$HOME/.nvim-env/venv/bin/python'
 
 
 "==============="

@@ -6,10 +6,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-export VISUAL="/usr/local/bin/nvim"
-export EDITOR="/usr/local/bin/nvim"
-export PYENV_ROOT="$HOME/.pyenv"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export VISUAL="$(brew --prefix)/bin/nvim"
+export EDITOR="$(brew --prefix)/bin/nvim"
+export PIPX_DEFAULT_PYTHON="$(brew --prefix)/bin/python3"
 export GPG_TTY="$(tty)"
 
 
@@ -24,11 +23,6 @@ source <(kubectl completion zsh)
 source <(colima completion zsh)
 
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-
 if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
 
@@ -36,6 +30,8 @@ if type brew &>/dev/null; then
     compinit
 fi
 
+
+alias ll="ls -lah"
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
