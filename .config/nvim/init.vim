@@ -1,6 +1,6 @@
 let mapleader=','
 
-if has('ide') == 0
+if !exists('g:vscode') && has('ide') == 0
     " Use an environment with pynvim already installed
     let g:python3_host_prog='$HOME/.nvim-env/venv/bin/python'
 
@@ -15,8 +15,6 @@ if has('ide') == 0
 
     Plug 'junegunn/fzf', {'do': './install --bin'}
     Plug 'junegunn/fzf.vim'
-
-    Plug 'dart-lang/dart-vim-plugin'
 
     Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
     Plug 'SirVer/ultisnips'
@@ -35,9 +33,6 @@ if has('ide') == 0
     let g:go_highlight_function_calls=1
     let g:go_highlight_operators=1
     let g:go_highlight_extra_types=1
-
-    let g:dart_style_guide=2
-    let g:dart_format_on_save=1
 
     let g:UltiSnipsExpandTrigger='<C-l>'
 
@@ -62,22 +57,39 @@ endif
 "==============="
 " Begin Options "
 "==============="
-set number relativenumber  " Hybrid line numbers
-set history=500
-set so=7                   " Keep some lines visible above and below the cursor
-set tm=500
 
-" Be civilized when searching
-set hlsearch
-set ignorecase
-set incsearch
-set smartcase
+if exists('g:vscode')
+    " Disable backups
+    set nobackup
+    set noswapfile
+    set nowb
+elseif has('ide')
+    set number relativenumber  " Hybrid line numbers
+    set history=500
+    set so=7                   " Keep some lines visible above and below the cursor
+    set tm=500
 
-if has('ide')
+    " Be civilized when searching
+    set hlsearch
+    set ignorecase
+    set incsearch
+    set smartcase
+
     set ideajoin               " Use IntelliJ's line joining behavior
     set ideaput                " Use IntelliJ's pasting behavior
     set idearefactormode=keep  " Don't change modes after refactoring
 else
+    set number relativenumber  " Hybrid line numbers
+    set history=500
+    set so=7                   " Keep some lines visible above and below the cursor
+    set tm=500
+
+    " Be civilized when searching
+    set hlsearch
+    set ignorecase
+    set incsearch
+    set smartcase
+
     set hidden
     set ruler            " Always show current position
     set showmatch        " Show matching brackets under cursor
@@ -128,7 +140,20 @@ endif
 "================"
 " Begin Commands "
 "================"
-if has('ide')
+if exists('g:vscode')
+    " Search
+    nnoremap <leader>g <Cmd>call VSCodeNotify('workbench.action.findInFiles')<CR>
+    nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+    nnoremap <leader>b <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+
+
+    " Code navigation
+    nnoremap <leader>j <Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
+    nnoremap <leader>r <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
+
+
+    nnoremap <silent> <leader><cr> :noh<cr>  " Clear highlights
+elseif has('ide')
     " Use Vim bindings by default
     sethandler a:vim
 
