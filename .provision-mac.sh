@@ -21,25 +21,29 @@ brew update
 brew upgrade
 
 
-# Shell improvements
-brew install --cask iterm2
+# General stuff
+defaults write -g ApplePressAndHoldEnabled -bool false
 
-brew install zsh-completion
+brew install --cask iterm2
+brew install --cask arc
+
+brew install zsh-completion powerlevel10k
 if ( ! compaudit ); then
     compaudit | xargs chmod g-w
 fi
 
-brew install romkatv/powerlevel10k/powerlevel10k
-
 
 # Dev tools
-brew install git gnupg pinentry-mac ripgrep go jq python3 pipx
+brew install git go python3 pipx ripgrep fzf jq
 
-brew install colima docker kubectl k9s tilt
+brew install gnupg ykman pinentry-mac
+
+brew install colima kubectl k9s
 colima nerdctl install
 
-brew install --cask jetbrains-toolbox
 brew install --cask google-cloud-sdk
+brew install --cask dbeaver-community
+brew install --cask jetbrains-toolbox
 
 
 # Neovim

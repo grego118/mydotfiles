@@ -16,7 +16,7 @@ path+=("$HOME/dev/flutter/bin")
 path+=("$(go env GOPATH)/bin")
 
 
-source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
+source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source <(kubectl completion zsh)
