@@ -1,40 +1,61 @@
-# Setup
+# My dotfiles
+
+It is what it is.
+
+## One-shot setup
+
+Copy, paste, profit:
+
+```zsh
+alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" && \
+cd ~ && \
+echo '*' > .gitignore && \
+mkdir .dotfiles && \
+git clone --bare https://github.com/grego118/mydotfiles .dotfiles && \
+rm .gitignore && \
+dotfiles checkout && \
+chmod +x .provision-mac.zsh && \
+./.provision-mac.zsh
+```
+
+## Step-by-step setup
 
 1. Define an alias to make things easier
 
-    ```shell
+    ```zsh
     alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
     ```
 
 2. Create a temp .gitignore to avoid recursion issues when cloning
 
-    ```shell
+    ```zsh
     cd ~
     echo '*' > .gitignore
     ```
 
 3. Clone the repo
 
-    ```shell
+    ```zsh
     mkdir .dotfiles
     git clone --bare https://github.com/grego118/mydotfiles .dotfiles
     ```
 
 4. Remove the temporary .gitignore and checkout the files
 
-    ```shell
+    ```zsh
     rm .gitignore
     dotfiles checkout
     ```
 
 5. Run the provision script
 
-    ```shell
-    ./.provision-mac
+    ```zsh
+    chmod +x .provision-mac.zsh
+    ./.provision-mac.zsh
     ```
 
-# Credits and thanks
+## Credits and thanks
 
 - Atlassian for their [dotfile management tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
-- The authors of the countless .vimrc files I've cherry-picked
+- The authors of the countless VIMRC files I've cherry-picked
 - This fantastic [YubiKey guide](https://github.com/drduh/YubiKey-Guide)
