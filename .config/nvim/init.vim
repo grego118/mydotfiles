@@ -55,7 +55,7 @@ else
     set cmdheight=1
     set colorcolumn=120
     set encoding=utf8
-    set shortmess+=c     " Don't pass messages to |ins-completion-menu|
+    set shortmess+=c     " Don't pass messages to ins-completion-menu
     set signcolumn=yes
     set updatetime=300
     set magic
@@ -96,6 +96,9 @@ endif
 "================"
 " Begin Commands "
 "================"
+" Avoid hotkey conflicts with IntelliJ
+nnoremap <S-U> <C-r>
+
 if has('ide')
     " Use the IDE bindings by default
     sethandler a:ide
