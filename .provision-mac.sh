@@ -32,6 +32,10 @@ if ( ! compaudit ); then
     compaudit | xargs chmod g-w
 fi
 
+brew tap zackelia/formulae
+brew install bclm
+sudo bclm write 80
+
 
 # Dev tools
 brew install git go python3 pipx ripgrep fzf jq
